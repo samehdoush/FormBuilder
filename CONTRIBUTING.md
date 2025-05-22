@@ -28,8 +28,8 @@ Please be respectful and considerate of others when contributing to this project
 1. Fork the repository on GitHub
 2. Clone your fork locally
    ```bash
-   git clone https://github.com/YOUR_USERNAME/vue-form-builder.git
-   cd vue-form-builder
+   git clone https://github.com/samehdoush/FormBuilder.git
+   cd FormBuilder
    ```
 3. Install dependencies
    ```bash

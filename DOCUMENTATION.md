@@ -26,7 +26,7 @@ The library now includes utilities for handling file uploads, converting them to
 ## Installation
 
 ```bash
-npm install vue-form-builder
+npm install @samehdoush/vue-formbuilder
 ```
 
 ## Quick Start
@@ -35,7 +35,7 @@ npm install vue-form-builder
 // main.js
 import { createApp } from 'vue';
 import { createVuetify } from 'vuetify';
-import VueFormBuilder from 'vue-form-builder';
+import VueFormBuilder from '@samehdoush/vue-formbuilder';
 import App from './App.vue';
 
 // Import required styles
@@ -405,7 +405,7 @@ A set of utility functions for handling files in forms.
 
 <script>
 import { ref } from 'vue';
-import { SignaturePad } from 'vue-form-builder';
+import { SignaturePad } from '@samehdoush/vue-formbuilder';
 
 export default {
   components: { SignaturePad },
@@ -436,7 +436,7 @@ export default {
 
 <script>
 import { ref } from 'vue';
-import { FormRenderer } from 'vue-form-builder';
+import { FormRenderer } from '@samehdoush/vue-formbuilder';
 
 export default {
   components: { FormRenderer },
@@ -499,7 +499,7 @@ export default {
 
 <script>
 import { ref } from 'vue';
-import { FormRenderer, FileHandler } from 'vue-form-builder';
+import { FormRenderer, FileHandler } from '@samehdoush/vue-formbuilder';
 
 export default {
   components: { FormRenderer },

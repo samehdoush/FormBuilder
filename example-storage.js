@@ -93,7 +93,7 @@ async function loadSavedForm(formId, formElements) {
 /*
 <script>
 import { ref, onMounted } from 'vue';
-import { FormRenderer } from 'vue-form-builder';
+import { FormRenderer } from '@samehdoush/vue-formbuilder';
 import { processFormSubmission, loadSavedForm } from './example-storage';
 
 export default {

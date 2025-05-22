@@ -8,7 +8,7 @@ This document provides examples of how to use the Vue Form Builder library in di
 
 ```bash
 # Install the library
-npm install vue-form-builder
+npm install @samehdoush/vue-formbuilder
 
 # Install peer dependencies if not already installed
 npm install vue vuetify @mdi/font
@@ -21,7 +21,7 @@ npm install vue vuetify @mdi/font
 import { createApp } from 'vue';
 import { createVuetify } from 'vuetify';
 import App from './App.vue';
-import VueFormBuilder from 'vue-form-builder';
+import VueFormBuilder from '@samehdoush/vue-formbuilder';
 
 // Import required styles
 import 'vuetify/styles';

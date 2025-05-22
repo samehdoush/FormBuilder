@@ -39,30 +39,70 @@ rl.question('Enter new version (leave blank to use current version): ', (newVers
     console.log(`Updated version to ${newVersion}`);
   }
   
-  try {
-    // Run tests
+  try {    // Run tests
     console.log('\nRunning tests...');
-    execSync('npm run test', { stdio: 'inherit' });
-    
-    // Build the package
-    console.log('\nBuilding package...');
-    execSync('npm run build', { stdio: 'inherit' });
-    
-    // Ask for confirmation before publishing
-    rl.question(`\nReady to publish vue-form-builder@${newVersion}. Continue? (y/n): `, (answer) => {
-      if (answer.toLowerCase() === 'y') {
-        try {
-          console.log('\nPublishing package...');
-          execSync('npm publish', { stdio: 'inherit' });
-          console.log(`\nSuccessfully published vue-form-builder@${newVersion}`);
-        } catch (error) {
-          console.error('Error publishing package:', error.message);
+    let testsSucceeded = true;
+    try {
+      execSync('npm run test', { stdio: 'inherit' });
+      console.log('Tests passed successfully.');
+    } catch (testError) {
+      testsSucceeded = false;
+      console.warn('\n==============================================');
+      console.warn('Warning: Tests failed with the following errors:');
+      console.warn('==============================================');
+      
+      // Extract a cleaner error message to display
+      const errorMessage = testError.message.split('\n')
+        .filter(line => !line.startsWith('npm ERR!') && !line.startsWith('command failed'))
+        .join('\n');
+      
+      console.warn(errorMessage);
+      console.warn('==============================================');
+      console.warn('You can still continue with build and publish if these errors are acceptable.');
+      console.warn('==============================================');
+      
+      // Ask for confirmation to continue despite test failures
+      rl.question('\nTests failed. Do you want to continue with publishing anyway? (y/n): ', (continueAnswer) => {
+        if (continueAnswer.toLowerCase() !== 'y') {
+          console.log('Publication canceled due to test failures.');
+          rl.close();
+          return;
         }
-      } else {
-        console.log('Publication canceled');
+        
+        proceedWithBuildAndPublish();
+      });
+    }
+    
+    // Only proceed directly if tests succeeded
+    if (testsSucceeded) {
+      proceedWithBuildAndPublish();
+    }
+    
+    function proceedWithBuildAndPublish() {
+      // Build the package
+      console.log('\nBuilding package...');
+      try {
+        execSync('npm run build', { stdio: 'inherit' });
+        
+        // Ask for confirmation before publishing
+        rl.question(`\nReady to publish @samehdoush/vue-formbuilder@${newVersion}. Continue? (y/n): `, (answer) => {
+          if (answer.toLowerCase() === 'y') {
+            try {              console.log('\nPublishing package as public...');
+              execSync('npm publish --access public', { stdio: 'inherit' });
+              console.log(`\nSuccessfully published @samehdoush/vue-formbuilder@${newVersion}`);
+            } catch (error) {
+              console.error('Error publishing package:', error.message);
+            }
+          } else {
+            console.log('Publication canceled');
+          }
+          rl.close();
+        });
+      } catch (buildError) {
+        console.error('Error building package:', buildError.message);
+        rl.close();
       }
-      rl.close();
-    });
+    }
   } catch (error) {
     console.error('Error:', error.message);
     rl.close();

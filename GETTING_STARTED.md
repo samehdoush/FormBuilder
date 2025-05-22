@@ -7,7 +7,7 @@ This guide will help you integrate the Vue Form Builder into your project.
 First, install the package and its dependencies:
 
 ```bash
-npm install vue-form-builder vue vuetify @mdi/font
+npm install @samehdoush/vue-formbuilder vue vuetify @mdi/font
 ```
 
 ## Basic Setup
@@ -22,7 +22,7 @@ import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import { aliases, mdi } from 'vuetify/iconsets/mdi';
-import VueFormBuilder from 'vue-form-builder';
+import VueFormBuilder from '@samehdoush/vue-formbuilder';
 import App from './App.vue';
 
 // Import required styles

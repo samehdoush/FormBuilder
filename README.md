@@ -25,7 +25,7 @@ A dynamic form builder and renderer built with Vue 3, Vuetify 3, and Tailwind CS
 ## Installation
 
 ```bash
-npm install vue-form-builder
+npm install @samehdoush/vue-formbuilder
 ```
 
 ## Dependencies
@@ -45,7 +45,7 @@ import { createApp } from 'vue';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
-import VueFormBuilder from 'vue-form-builder';
+import VueFormBuilder from '@samehdoush/vue-formbuilder';
 
 // Import styles
 import 'vuetify/styles';
@@ -139,7 +139,7 @@ export default {
 
 <script>
 import { ref } from 'vue';
-import { FormBuilder } from 'vue-form-builder';
+import { FormBuilder } from '@samehdoush/vue-formbuilder';
 
 export default {
   components: {
@@ -185,7 +185,7 @@ export default {
 
 <script>
 import { ref } from 'vue';
-import { FormRenderer } from 'vue-form-builder';
+import { FormRenderer } from '@samehdoush/vue-formbuilder';
 
 export default {
   components: {
@@ -236,7 +236,7 @@ export default {
 
 <script>
 import { ref } from 'vue';
-import { SignaturePad } from 'vue-form-builder';
+import { SignaturePad } from '@samehdoush/vue-formbuilder';
 
 export default {
   components: {
@@ -263,7 +263,7 @@ export default {
 
 <script>
 import { ref } from 'vue';
-import { FormRenderer, FileHandler } from 'vue-form-builder';
+import { FormRenderer, FileHandler } from '@samehdoush/vue-formbuilder';
 
 export default {
   components: {
