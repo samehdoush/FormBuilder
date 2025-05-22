@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for the form builder */
+.form-builder-container {
+  @apply border border-gray-300 rounded-lg p-4 bg-white shadow-sm;
+}
+
+.form-element {
+  @apply mb-4 p-2 border border-gray-200 rounded bg-white hover:shadow-md transition-all duration-200;
+}
+
+.form-builder-toolbox {
+  @apply border-r border-gray-300 p-2;
+}
+
+.form-builder-canvas {
+  @apply p-4 min-h-[400px] bg-gray-50 rounded;
+}
+
+.form-builder-button {
+  @apply px-3 py-1.5 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors;
+}
+
+.form-builder-delete {
+  @apply text-red-500 hover:text-red-700;
+}
+
+.form-builder-edit {
+  @apply text-blue-500 hover:text-blue-700;
+}

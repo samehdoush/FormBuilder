@@ -1,0 +1,24 @@
+{
+  "name": "vue-form-builder-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "vue": "^3.5.14",
+    "vue-form-builder": "^1.0.0",
+    "vuedraggable": "^4.1.0",
+    "vuetify": "^3.8.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^4.1.7",
+    "vite": "^6.3.5"
+  }
+}

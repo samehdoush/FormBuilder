@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Form Builder Starter Template</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3.8.6/dist/vuetify.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    #app {
+      height: 100%;
+    }
+    
+    .v-application {
+      background-color: #f5f5f5 !important;
+    }
+    
+    .form-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    pre.json {
+      background-color: #f8f8f8;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 16px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-app-bar color="primary" dark>
+        <v-app-bar-title>Vue Form Builder Starter</v-app-bar-title>
+      </v-app-bar>
+      
+      <v-main>
+        <div class="form-container">
+          <v-tabs v-model="activeTab">
+            <v-tab value="builder">Form Builder</v-tab>
+            <v-tab value="preview">Preview</v-tab>
+            <v-tab value="json">JSON</v-tab>
+          </v-tabs>
+          
+          <v-card class="mt-4">
+            <v-window v-model="activeTab">
+              <v-window-item value="builder">
+                <v-card-text>
+                  <!-- Form Builder goes here -->
+                  <div id="form-builder-container"></div>
+                </v-card-text>
+              </v-window-item>
+              
+              <v-window-item value="preview">
+                <v-card-text>
+                  <!-- Form Renderer goes here -->
+                  <div id="form-renderer-container"></div>
+                </v-card-text>
+              </v-window-item>
+              
+              <v-window-item value="json">
+                <v-card-text>
+                  <pre class="json">{{ JSON.stringify(formSchema, null, 2) }}</pre>
+                </v-card-text>
+              </v-window-item>
+            </v-window>
+          </v-card>
+        </div>
+      </v-main>
+      
+      <v-footer app>
+        <div class="text-center w-100">
+          &copy; {{ new Date().getFullYear() }} — <strong>Vue Form Builder</strong>
+        </div>
+      </v-footer>
+    </v-app>
+  </div>
+
+  <!-- Import Vue first -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.14/dist/vue.global.js"></script>
+  
+  <!-- Import Vuetify -->
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3.8.6/dist/vuetify.min.js"></script>
+  
+  <!-- Import vue-form-builder (change to your actual CDN path) -->
+  <script src="./dist/vue-form-builder.min.js"></script>
+  
+  <script>
+    // Create Vue App
+    const { createApp } = Vue;
+    const { createVuetify } = Vuetify;
+    
+    const vuetify = createVuetify();
+    
+    const app = createApp({
+      data() {
+        return {
+          activeTab: 'builder',
+          formSchema: {
+            title: 'New Form',
+            elements: []
+          }
+        };
+      },
+      methods: {
+        onSave(schema) {
+          this.formSchema = schema;
+          this.activeTab = 'preview';
+        },
+        onSubmit(formData) {
+          console.log('Form submitted with data:', formData);
+          alert('Form submitted successfully!\n\nCheck the console for form data.');
+        }
+      }
+    });
+    
+    app.use(vuetify);
+    
+    // Register form builder components
+    // Assuming VueFormBuilder is exposed globally from the library's UMD build
+    app.component('FormBuilder', VueFormBuilder.FormBuilder);
+    app.component('FormRenderer', VueFormBuilder.FormRenderer);
+    
+    app.mount('#app');
+    
+    // Mount the individual components with refs
+    const formBuilderInstance = createApp({
+      extends: VueFormBuilder.FormBuilder,
+      props: ['modelValue'],
+      emits: ['update:modelValue', 'save'],
+      setup(props, { emit }) {
+        // Connect to the parent app's state
+        return {
+          onSave(schema) {
+            app.config.globalProperties.formSchema = schema;
+            app.config.globalProperties.onSave(schema);
+          }
+        };
+      }
+    });
+    formBuilderInstance.use(vuetify);
+    formBuilderInstance.mount('#form-builder-container');
+    
+    const formRendererInstance = createApp({
+      extends: VueFormBuilder.FormRenderer,
+      props: ['formData'],
+      emits: ['save'],
+      setup() {
+        // Connect to the parent app's state
+        return {
+          onSubmit(formData) {
+            app.config.globalProperties.onSubmit(formData);
+          }
+        };
+      }
+    });
+    formRendererInstance.use(vuetify);
+    formRendererInstance.mount('#form-renderer-container');
+  </script>
+</body>
+</html>

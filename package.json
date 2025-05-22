@@ -1,0 +1,51 @@
+{
+  "name": "vue-form-builder",
+  "version": "1.0.0",
+  "main": "dist/vue-form-builder.js",
+  "module": "dist/vue-form-builder.esm.js",
+  "unpkg": "dist/vue-form-builder.min.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "dist",
+    "src/index.d.ts"
+  ],
+  "scripts": {
+    "serve": "vite",
+    "build": "vite build",
+    "build:full": "node build.js",
+    "dev": "vite --open demo.html",
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "vue",
+    "vuetify",
+    "form-builder",
+    "form-renderer",
+    "json-form"
+  ],
+  "author": "",
+  "license": "MIT",
+  "description": "A dynamic form builder and renderer using Vue 3, Vuetify 3, and Tailwind CSS",
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "@tailwindcss/vite": "^4.1.7",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "signature_pad": "^5.0.7",
+    "tailwindcss": "^4.1.7",
+    "uuid": "^11.1.0",
+    "vite": "^6.3.5",
+    "vue": "^3.5.14",
+    "vuedraggable": "^4.1.0",
+    "vuetify": "^3.8.6"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^2.4.3",
+    "autoprefixer": "^10.4.21",
+    "jsdom": "^22.1.0",
+    "postcss": "^8.5.3",
+    "vitest": "^0.34.6"
+  }
+}
