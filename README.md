@@ -50,6 +50,8 @@ import VueFormBuilder from '@samehdoush/vue-formbuilder';
 // Import styles
 import 'vuetify/styles';
 import '@mdi/font/css/materialdesignicons.css'; // For Vuetify icons
+// Import FormBuilder CSS (required)
+import '@samehdoush/vue-formbuilder/style.css';
 
 const app = createApp(App);
 const vuetify = createVuetify({
