@@ -1,5 +1,5 @@
 {
-  "name": "vue-form-builder",
+  "name": "@samehdoush/vue-formbuilder",
   "version": "1.0.0",
   "main": "dist/vue-form-builder.js",
   "module": "dist/vue-form-builder.esm.js",
@@ -26,9 +26,11 @@
     "form-renderer",
     "json-form"
   ],
-  "author": "",
+  "author": "Sameh Doush <samehdev95@gmail.com>",
   "license": "MIT",
   "description": "A dynamic form builder and renderer using Vue 3, Vuetify 3, and Tailwind CSS",
+
+   "repository": "samehdoush/FormBuilder",
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@tailwindcss/vite": "^4.1.7",
